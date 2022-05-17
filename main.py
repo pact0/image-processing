@@ -1,5 +1,4 @@
-from tkinter import W
-from PIL import Image 
+from PIL import Image
 import argparse
 
 from openCircle import openCircle
@@ -26,6 +25,7 @@ parser.add_argument('--output', type=str,
                     required=True)
 args = parser.parse_args()
 
+print(args)
 
 try:
     image =Image.open(args.input)
@@ -37,7 +37,7 @@ try:
         result = entropyFilt(image)
 
     if args.method == "labeling":
-        result = normalize(connected_component_labelling(image,4))
+        result = normalize(connected_component_labelling(image,int(args.args[0])))
 
     image.close()
     result.show()
